@@ -44,6 +44,7 @@ function checkInput(color){
         // check if color is correct
         var correct;
 
+      
         if (colorArray[pointer] == color){
             correct = true;
         }
@@ -67,6 +68,8 @@ function checkInput(color){
             colorArray = [];
             wrongBeat.play();
             // display Game Over
+            hiddenElement.style.visibility = "visible";
+            hiddenElement.innerHTML = "You lost, please try again.";
         }
     }
 
