@@ -24,6 +24,17 @@ var pointer;
 
 
 function checkInput(color){
+
+    //Hidding H1 element if the game is active
+
+    var hiddenElement = document.getElementById("level-title");
+
+    if( !(hiddenElement.style.visibility === "hidden") ){
+        hiddenElement.style.visibility = "hidden";
+    }
+
+    //document.getElementById("level-title").style.display = "none";
+
     // check if color is correct
     var correct = true;
     if (correct) {
