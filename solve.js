@@ -1,3 +1,15 @@
+// load sounds
+let blueBeat = new Audio('/sounds/blue.mp3');
+let redBeat = new Audio('/sounds/red.mp3');
+let greenBeat = new Audio('/sounds/green.mp3');
+let yellowBeat = new Audio('/sounds/yellow.mp3');
+let wrongBeat = new Audio('/sounds/wrong.mp3');
+
+// Add event listeners
+document.querySelector("#blue").addEventListener("click", function () {checkInput('blue');});
+document.querySelector("#green").addEventListener("click", function () {checkInput('green');});
+document.querySelector("#red").addEventListener("click", function () {checkInput('red');});
+document.querySelector("#yellow").addEventListener("click", function () {checkInput('yellow');});
 /*
 Define Global Array
     blue
@@ -12,15 +24,24 @@ var pointer;
 
 
 function checkInput(color){
-    /* check user if user clicked the correct color */
-    if (arr[pointer] == color){
-        pointer += 1
+    // check if color is correct
+    var correct = true;
+    if (correct) {
+        // add sound
+        if (color == 'green'){
+            greenBeat.play();
+        }
+        else if (color == 'blue'){
+            blueBeat.play();
+        }
+        else if (color == 'red'){
+            redBeat.play();
+        }
+        else {
+            yellowBeat.play();
+        }
     }
-    else{
-        pointer = -1
-        /*end game*/
-    }
-    
+
 }
 
 function addRandom(){
@@ -31,3 +52,10 @@ function playPattern(){
     // light the colors and play the sound of the color
 }
 
+function changeOpacity(color){
+    color.style.opacity = "0.2";
+}
+
+function returnOpacity(color){
+    color.style.opacity = "0.8";
+}

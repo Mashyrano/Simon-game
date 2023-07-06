@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Mashyrano and Nicole">
     <title>Mashyrano and Nicole</title>
 
     <!-- CSS FILE -->
@@ -10,38 +11,31 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div>
-        <div name='blue' onclick="addInput(this.name)"></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-
     <h1 id="level-title">Press A Key to Start</h1>
     <div class="container">
-      <div lass="row">
+      <div class="row">
   
-        <div type="button" id="green" class="btn green">
+        <div type="button" id="green" class="btn green" onmousedown="changeOpacity(this)" onmouseup="returnOpacity(this)">
   
         </div>
   
-        <div type="button" id="red" class="btn red">
+        <div type="button" id="red" class="btn red" onmousedown="changeOpacity(this)" onmouseup="returnOpacity(this)">
   
         </div>
       </div>
   
       <div class="row">
   
-        <div type="button" id="yellow" class="btn yellow">
+        <div type="button" id="yellow" class="btn yellow" onmousedown="changeOpacity(this)" onmouseup="returnOpacity(this)">
   
         </div>
-        <div type="button" id="blue" class="btn blue">
+        <div type="button" id="blue" class="btn blue" onmousedown="changeOpacity(this)" onmouseup="returnOpacity(this)">
   
         </div>
   
       </div>
   
     </div>
-    <script type="" src="solve.js"></script>
+    <script type="text/javascript" src="solve.js"></script>
 </body>
 </html>
