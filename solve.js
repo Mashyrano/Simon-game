@@ -16,10 +16,11 @@ document.querySelector("#yellow").addEventListener("click", function () {checkIn
 var colorArray = Array(); // pattern array
 colorPool = ['blue', 'green', 'yellow', 'red']; // color pool
 var pointer=0; // pointer variable to keep track of user progress
+var ready = true; // ready to accept input
 
 // Define Functions
 
-function checkInput(color){
+async function checkInput(color){
     /*Handles user input*/
 
     //Hidding H1 element if the game is active
@@ -32,44 +33,56 @@ function checkInput(color){
 
     //document.getElementById("level-title").style.display = "none";
 
-    // check if it is first click
-    if (colorArray.length == 0){
-        // record 
-        playSound(color)
-        colorArray.push(color);
-        addRandom();
-        playPattern();
-    }
-    else {
-        // check if color is correct
-        var correct;
+    // check if we are ready to take input
+    if (ready){
 
-      
-        if (colorArray[pointer] == color){
-            correct = true;
-        }
-
-        if (correct) {
-            // add sound
-            playSound(color);
-            if (pointer == (colorArray.length -1)){
-                pointer = 0;
-                addRandom();
-                playPattern();
-            }
-            else{
-                pointer++;
-            }
-
+        // check if it is first click
+        if (colorArray.length == 0){
+           // play and change opacity
+            document.getElementById(color).style.opacity = "0.2";
+            playSound(color)
+            await sleep(100);
+            document.getElementById(color).style.opacity = "0.8";
+            // record
+            colorArray.push(color);
+            addRandom();
+            ready=false;
+            playPattern();
         }
         else {
-            // end game and reset variable
-            pointer = 0;
-            colorArray = [];
-            wrongBeat.play();
-            // display Game Over
-            hiddenElement.style.visibility = "visible";
-            hiddenElement.innerHTML = "You lost, please try again.";
+            // check if color is correct
+            var correct;      
+            if (colorArray[pointer] == color){
+                correct = true;
+            }
+
+            if (correct) {
+                // play sound and change opacity
+                document.getElementById(color).style.opacity = "0.2";
+                playSound(color);
+                await sleep(100);
+                document.getElementById(color).style.opacity = "0.8";
+                // add random or continue listening
+                if (pointer == (colorArray.length -1)){
+                    pointer = 0;
+                    addRandom();
+                    ready = false;
+                    playPattern();
+                }
+                else{
+                    pointer++;
+                }
+
+            }
+            else {
+                // end game and reset variable
+                pointer = 0;
+                colorArray = [];
+                wrongBeat.play();
+                // display Game Over
+                hiddenElement.style.visibility = "visible";
+                hiddenElement.innerHTML = "You lost, please try again.";
+            }
         }
     }
 
@@ -96,11 +109,13 @@ async function playPattern(){
         playSound(color);
         await sleep(500);
         document.getElementById(color).style.opacity = "0.8";
+        await sleep(100);
     }
-    }
+    ready=true;
+}
 
 function playSound(color){
-    // plays the respecive sound
+    // plays the respecive sound and change opacity
     if (color == 'green'){
         greenBeat.play();
     }
