@@ -1,5 +1,3 @@
-// color pool
-colorPool = ['blue', 'green', 'yellow', 'red'];
 
 // load sounds
 let blueBeat = new Audio('/sounds/blue.mp3');
@@ -14,13 +12,15 @@ document.querySelector("#green").addEventListener("click", function () {checkInp
 document.querySelector("#red").addEventListener("click", function () {checkInput('red');});
 document.querySelector("#yellow").addEventListener("click", function () {checkInput('yellow');});
 
-var colorArray = Array();
+// Define variables
+var colorArray = Array(); // pattern array
+colorPool = ['blue', 'green', 'yellow', 'red']; // color pool
+var pointer=0; // pointer variable to keep track of user progress
 
-// Define pointer variable to keep track of user progress
-var pointer=0;
-
+// Define Functions
 
 function checkInput(color){
+    /*Handles user input*/
 
     //Hidding H1 element if the game is active
 
@@ -76,7 +76,7 @@ function checkInput(color){
 }
 
 function addRandom(){
-    // generate some random value and add it to array
+    // generates some random value and adds it to array
     var i = Math.floor(Math.random() * 4);
     colorArray.push(colorPool[i]);    
 }
@@ -87,7 +87,7 @@ function sleep(ms) {
 }
 
 async function playPattern(){
-    // light the colors and play the sound of the color
+    // plays the pattern in colorArray
     await sleep(1000);
     var color;
     for (let i = 0; i < colorArray.length; i++) {
@@ -100,6 +100,7 @@ async function playPattern(){
     }
 
 function playSound(color){
+    // plays the respecive sound
     if (color == 'green'){
         greenBeat.play();
     }
@@ -115,10 +116,12 @@ function playSound(color){
 }
 
 function changeOpacity(color){
+    // lowers opacity
     color.style.opacity = "0.2";
 }
 
 function returnOpacity(color){
+    // restores opacity
     color.style.opacity = "0.8";
 }
 
