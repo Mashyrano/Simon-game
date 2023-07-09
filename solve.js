@@ -101,7 +101,6 @@ async function checkInput(color){
                 wrongBeat.play();
                 await sleep(500);
                 // display Game Over
-                hiddenElement.style.visibility = "visible";
                 $("body").removeClass("game-over");
                 $("#level-title").text("You lost, please try again.");
 
