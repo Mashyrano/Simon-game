@@ -1,3 +1,11 @@
+/*
+    Red bg when lost using jQuery
+    show level as you rise through the ranks
+    play sound using path
+    change opacity by changing class using JQUERY on event listener
+*/
+
+
 
 // load sounds
 let blueBeat = new Audio('/sounds/blue.mp3');
